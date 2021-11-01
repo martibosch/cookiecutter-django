@@ -1,0 +1,15 @@
+services:
+  django:{% if cookiecutter.use_celery == 'y' %} &django{% endif %}
+    env_file:
+      - ./.envs/.staging/.django
+      - ./.envs/.production/.postgres
+
+  traefik:
+    env_file:
+      - ./.envs/.staging/.traefik
+  {%- if cookiecutter.cloud_provider == 'AWS' %}
+
+  awscli:
+    env_file:
+      - ./.envs/.staging/.django
+  {%- endif %}
