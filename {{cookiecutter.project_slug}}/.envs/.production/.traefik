@@ -1,0 +1,7 @@
+PREPEND_HOST_WWW=true
+
+TRAEFIK_HOST={{ cookiecutter.domain_name }}
+
+{%- if cookiecutter.use_celery == 'y' %}
+TRAEFIK_FLOWER_HOST = {{ cookiecutter.domain_name }}
+{%- endif %}
