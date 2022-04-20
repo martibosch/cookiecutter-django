@@ -3,6 +3,48 @@ All enhancements and patches to Cookiecutter Django will be documented in this f
 
 <!-- GENERATOR_PLACEHOLDER -->
 
+## 2022.04.19
+
+### Updated
+- Update tox to 3.25.0 ([#3675](https://github.com/cookiecutter/cookiecutter-django/pull/3675))
+- Update sentry-sdk to 1.5.10 ([#3679](https://github.com/cookiecutter/cookiecutter-django/pull/3679))
+
+## 2022.04.13
+
+### Updated
+- Bump stefanzweifel/git-auto-commit-action from 4.14.0 to 4.14.1 ([#3677](https://github.com/cookiecutter/cookiecutter-django/pull/3677))
+
+## 2022.04.11
+
+### Updated
+- Update django to 3.2.13 ([#3676](https://github.com/cookiecutter/cookiecutter-django/pull/3676))
+
+## 2022.04.08
+
+### Updated
+- Auto-update pre-commit hooks ([#3673](https://github.com/cookiecutter/cookiecutter-django/pull/3673))
+
+## 2022.04.05
+
+### Updated
+- Update celery to 5.2.6 ([#3671](https://github.com/cookiecutter/cookiecutter-django/pull/3671))
+
+## 2022.04.04
+
+### Updated
+- Update redis to 4.2.2 ([#3670](https://github.com/cookiecutter/cookiecutter-django/pull/3670))
+- Update celery to 5.2.5 ([#3669](https://github.com/cookiecutter/cookiecutter-django/pull/3669))
+- Update pre-commit to 2.18.1 ([#3668](https://github.com/cookiecutter/cookiecutter-django/pull/3668))
+- Update pillow to 9.1.0 ([#3665](https://github.com/cookiecutter/cookiecutter-django/pull/3665))
+
+## 2022.04.01
+
+### Changed
+- Update domain for Celery docs ([#3663](https://github.com/cookiecutter/cookiecutter-django/pull/3663))
+### Updated
+- Update watchgod to 0.8.2 ([#3664](https://github.com/cookiecutter/cookiecutter-django/pull/3664))
+- Update redis to 4.2.1 ([#3660](https://github.com/cookiecutter/cookiecutter-django/pull/3660))
+
 ## 2022.03.28
 
 ### Changed
