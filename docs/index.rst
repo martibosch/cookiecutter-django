@@ -23,6 +23,7 @@ Contents
    deployment-on-pythonanywhere
    deployment-on-heroku
    deployment-with-docker
+   deployment-with-terraform-on-do
    docker-postgres-backups
    websocket
    faq

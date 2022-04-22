@@ -133,6 +133,12 @@ To see how your containers are doing run::
 
     docker-compose -f production.yml ps
 
+Building & Running Staging Stack
+--------------------------------
+
+To build and run the staging stack, you can use the same commands used for production but adding `staging.yml` as configuration override (see [the dedicated section of the docker-compose documentation](https://docs.docker.com/compose/extends/#multiple-compose-files) for more details). For instance, to build the staging stack, you would run::
+
+    docker-compose -f production.yml -f staging.yml build
 
 Example: Supervisor
 -------------------
@@ -160,4 +166,3 @@ Move it to ``/etc/supervisor/conf.d/{{cookiecutter.project_slug}}.conf`` and run
 For status check, run::
 
     supervisorctl status
-
