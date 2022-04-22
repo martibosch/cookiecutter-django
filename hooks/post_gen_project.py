@@ -87,6 +87,10 @@ def remove_heroku_build_hooks():
     shutil.rmtree("bin")
 
 
+def remove_terraform_files():
+    shutil.rmtree("terraform")
+
+
 def remove_gulp_files():
     file_names = ["gulpfile.js"]
     for file_name in file_names:
@@ -382,6 +386,8 @@ def main():
         append_to_gitignore_file(".envs/*")
         if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
             append_to_gitignore_file("!.envs/.local/")
+    if "{{ cookiecutter.use_terraform }}".lower() == "n":
+        remove_terraform_files()
 
     if "{{ cookiecutter.frontend_pipeline }}" != "Gulp":
         remove_gulp_files()
