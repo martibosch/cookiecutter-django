@@ -13,12 +13,17 @@ Prerequisites
 First-time setup
 ----------------
 
-From the ``terraform`` directory, initalize terraform with the following command, which should only be run once (unless the provider/module versions change)::
+* In ``.envs/.production/.django``, ensure that the ``DJANGO_AWS_S3_REGION_NAME`` and ``DJANGO_AWS_S3_ENDPOINT_URL`` settings are set properly, and then add the S3 access keys in the following lines::
+
+    DJANGO_AWS_ACCESS_KEY_ID=
+    DJANGO_AWS_SECRET_ACCESS_KEY=
+
+* From the ``terraform`` directory, initalize terraform with the following command, which should only be run once (unless the provider/module versions change)::
 
     cd terraform
     terraform init
 
-Then, create a workspace for the ``staging`` and ``production`` environments by running the command below (which should only be run once)::
+* Then, create a workspace for the ``staging`` and ``production`` environments by running the command below (which should only be run once)::
 
     terraform workspace new <env>  # replace `<env>` with the desired environment
 

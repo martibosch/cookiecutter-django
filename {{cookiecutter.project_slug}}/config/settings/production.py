@@ -91,7 +91,12 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#cloudfront
 AWS_S3_CUSTOM_DOMAIN = env("DJANGO_AWS_S3_CUSTOM_DOMAIN", default=None)
-aws_s3_domain = AWS_S3_CUSTOM_DOMAIN or f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+# https://django-storages.readthedocs.io/en/latest/backends/digital-ocean-spaces.html
+AWS_S3_ENDPOINT_URL = env("DJANGO_AWS_S3_ENDPOINT_URL")
+AWS_DEFAULT_ACL = "public-read"
+aws_s3_domain = (
+    f"https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_REGION_NAME}.digitaloceanspaces.com"
+)
 {% elif cookiecutter.cloud_provider == 'GCP' %}
 GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
 GS_DEFAULT_ACL = "publicRead"

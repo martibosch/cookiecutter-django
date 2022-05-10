@@ -30,6 +30,11 @@
     "GCP",
     "None"
   ],
+  "do_region": [
+    "fra1",
+    "Other",
+    "None"
+  ],
   "mail_service": [
     "Mailgun",
     "Amazon SES",

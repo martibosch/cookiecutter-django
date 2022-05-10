@@ -38,7 +38,16 @@ SPARKPOST_API_KEY=
 # ------------------------------------------------------------------------------
 DJANGO_AWS_ACCESS_KEY_ID=
 DJANGO_AWS_SECRET_ACCESS_KEY=
-DJANGO_AWS_STORAGE_BUCKET_NAME=
+DJANGO_AWS_STORAGE_BUCKET_NAME={{ cookiecutter.project_slug }}-production
+{% if cookiecutter.do_region != 'None' %}
+{% if cookiecutter.do_region == 'Other' %}
+DJANGO_AWS_S3_REGION_NAME=
+DJANGO_AWS_S3_ENDPOINT_URL=
+{% else %}
+DJANGO_AWS_S3_REGION_NAME={{ cookiecutter.do_region }}
+DJANGO_AWS_S3_ENDPOINT_URL=https://{{ cookiecutter.do_region }}.digitaloceanspaces.com
+{% endif %}
+{% endif %}
 {% elif cookiecutter.cloud_provider == 'GCP' %}
 # GCP
 # ------------------------------------------------------------------------------
