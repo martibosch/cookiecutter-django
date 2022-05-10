@@ -7,7 +7,7 @@ variable "ssh_key_name" {}
 variable "project_slug" {
   description = "Project slug, used to name the droplets and spaces buckets."
   type        = string
-  default     = "{{ cookiecutter.project_slug }}"
+  default     = "{{ cookiecutter.project_slug|replace('_', '-') }}"
 }
 
 variable "env" {
@@ -56,6 +56,7 @@ variable "records" {
 variable "docker_compose_version" {
   description = "Version of docker-compose"
   type        = string
+  default     = "v2.5.0"
 }
 
 variable "cors_allowed_origins" {
