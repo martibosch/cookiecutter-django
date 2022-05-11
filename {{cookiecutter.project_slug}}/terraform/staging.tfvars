@@ -1,3 +1,4 @@
 env                  = "staging"
-records              = { "www." : { "domain" = "{{ cookiecutter.staging_domain_name }}", "type" = "CNAME", "value" = "@", "ttl" = 1800 } }
+domain               = "{{ cookiecutter.domain_name }}"
+records              = { "{{ cookiecutter.staging_domain_name }}." : { "domain" = "{{ cookiecutter.domain_name }}", "type" = "A", "value" = "droplet", "ttl" = 1800 } }
 cors_allowed_origins = ["{{ cookiecutter.staging_domain_name }}"]
