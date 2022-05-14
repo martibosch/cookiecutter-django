@@ -11,7 +11,7 @@ data "digitalocean_ssh_key" "ssh_key" {
 module "droplet" {
   source       = "martibosch/docker-compose-host/digitalocean"
   version      = "0.2.12"
-  droplet_name = "${var.project_slug}-${var.env}"
+  droplet_name = "${var.resource_prefix}-${var.env}"
   do_token     = var.do_token
 
   image                  = var.droplet_image
@@ -32,7 +32,7 @@ module "droplet" {
 }
 
 resource "digitalocean_spaces_bucket" "bucket" {
-  name          = "${var.project_slug}-${var.env}"
+  name          = "${var.resource_prefix}-${var.env}"
   acl           = "public-read"
   force_destroy = true
   region        = var.region

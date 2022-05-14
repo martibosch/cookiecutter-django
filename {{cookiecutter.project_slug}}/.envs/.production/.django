@@ -38,7 +38,7 @@ SPARKPOST_API_KEY=
 # ------------------------------------------------------------------------------
 DJANGO_AWS_ACCESS_KEY_ID=
 DJANGO_AWS_SECRET_ACCESS_KEY=
-DJANGO_AWS_STORAGE_BUCKET_NAME={{ cookiecutter.project_slug|replace('_', '-') }}-production
+DJANGO_AWS_STORAGE_BUCKET_NAME={{ cookiecutter.resource_prefix }}-production
 {% if cookiecutter.do_region != 'None' %}
 {% if cookiecutter.do_region == 'Other' %}
 DJANGO_AWS_S3_REGION_NAME=

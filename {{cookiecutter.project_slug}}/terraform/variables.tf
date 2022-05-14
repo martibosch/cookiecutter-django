@@ -4,10 +4,10 @@ variable "spaces_secret_key" {}
 # variable "domain_name" {}
 variable "ssh_key_name" {}
 
-variable "project_slug" {
-  description = "Project slug, used to name the droplets and spaces buckets."
+variable "resource_prefix" {
+  description = "Prefix name the droplets and spaces buckets."
   type        = string
-  default     = "{{ cookiecutter.project_slug|replace('_', '-') }}"
+  default     = "{{ cookiecutter.resource_prefix }}"
 }
 
 variable "env" {
