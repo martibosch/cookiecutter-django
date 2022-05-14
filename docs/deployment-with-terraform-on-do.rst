@@ -13,6 +13,8 @@ Prerequisites
 First-time setup
 ----------------
 
+* Register a domain and point it to the DigitalOcean name servers, e.g., see https://docs.digitalocean.com/tutorials/dns-registrars
+
 * In ``.envs/.production/.django``, ensure that the ``DJANGO_AWS_S3_REGION_NAME`` and ``DJANGO_AWS_S3_ENDPOINT_URL`` settings are set properly, and then add the S3 access keys in the following lines::
 
     DJANGO_AWS_ACCESS_KEY_ID=
