@@ -121,11 +121,11 @@ Answer the prompts with your own desired [options](http://cookiecutter-django.re
     use_pycharm [n]: y
     use_docker [n]: n
     Select postgresql_version:
-    1 - 14.1
-    2 - 13.5
-    3 - 12.9
-    4 - 11.14
-    5 - 10.19
+    1 - 14
+    2 - 13
+    3 - 12
+    4 - 11
+    5 - 10
     Choose from 1, 2, 3, 4, 5 [1]: 1
     Select cloud_provider:
     1 - AWS
@@ -232,6 +232,7 @@ experience better.
 
 ## Articles
 
+-   [Cookiecutter Django With Amazon RDS](https://haseeburrehman.com/posts/cookiecutter-django-with-amazon-rds/) - Apr, 2, 2021
 -   [Using cookiecutter-django with Google Cloud Storage](https://ahhda.github.io/cloud/gce/django/2019/03/12/using-django-cookiecutter-cloud-storage.html) - Mar. 12, 2019
 -   [cookiecutter-django with Nginx, Route 53 and ELB](https://msaizar.com/blog/cookiecutter-django-nginx-route-53-and-elb/) - Feb. 12, 2018
 -   [cookiecutter-django and Amazon RDS](https://msaizar.com/blog/cookiecutter-django-and-amazon-rds/) - Feb. 7, 2018
