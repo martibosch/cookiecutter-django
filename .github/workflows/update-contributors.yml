@@ -5,17 +5,22 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+
 jobs:
   build:
     # Disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'cookiecutter'
+    permissions:
+      contents: write  # for stefanzweifel/git-auto-commit-action to push code in repo
 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "3.9"
       - name: Install dependencies

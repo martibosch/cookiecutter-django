@@ -46,6 +46,8 @@ services:
       {%- if cookiecutter.use_celery == 'y' %}
       - "0.0.0.0:5555:5555"
       {%- endif %}
+    env_file:
+      - ./.envs/.production/.traefik
 
   redis:
     image: redis:6

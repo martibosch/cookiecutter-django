@@ -34,9 +34,13 @@ http:
   routers:
     web-secure-router:
       {%- if cookiecutter.domain_name.count('.') == 1 %}
-      rule: "Host(`{{ cookiecutter.domain_name }}`) || Host(`www.{{ cookiecutter.domain_name }}`)"
+      {% raw -%}
+      rule: Host(`{{ env "TRAEFIK_HOST" }}`){{ if eq (env "ADD_HOST_WWW") "true" }} || Host(`www.{{ env "TRAEFIK_HOST" }}`){{ end }}
+      {%- endraw %}
       {%- else %}
-      rule: "Host(`{{ cookiecutter.domain_name }}`)"
+      {% raw -%}
+      rule: Host(`{{ env "TRAEFIK_HOST" }}`)
+      {%- endraw %}
       {%- endif %}
       entryPoints:
         - web-secure
@@ -49,7 +53,9 @@ http:
     {%- if cookiecutter.use_celery == 'y' %}
 
     flower-secure-router:
-      rule: "Host(`{{ cookiecutter.domain_name }}`)"
+      {% raw -%}
+      rule: Host(`{{ env "TRAEFIK_FLOWER_HOST" }}`)
+      {%- endraw %}
       entryPoints:
         - flower
       service: flower
