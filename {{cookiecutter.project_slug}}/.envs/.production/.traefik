@@ -1,4 +1,4 @@
-PREPEND_HOST_WWW=true
+PREPEND_HOST_WWW={%- if cookiecutter.create_cname == "y" %}true{% else %}false{%- endif %}
 
 TRAEFIK_HOST={{ cookiecutter.domain_name }}
 

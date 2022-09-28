@@ -1,6 +1,6 @@
 # General
 # ------------------------------------------------------------------------------
-DJANGO_ALLOWED_HOSTS=.{{ cookiecutter.staging_domain_name }}
+DJANGO_ALLOWED_HOSTS=.{{ cookiecutter.staging_subdomain_name }}.{{ cookiecutter.domain_name }}
 
 # Security
 # ------------------------------------------------------------------------------

@@ -1,0 +1,26 @@
+data "terraform_remote_state" "base" {
+  backend = "remote"
+  config = {
+    organization = var.tfc_org_name
+    workspaces = {
+      name = var.tfc_base_workspace_name
+    }
+  }
+}
+
+module "app" {
+  source = "github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}//terraform/modules/app"
+  env    = "prod"
+
+  resource_prefix = var.resource_prefix
+  droplet_image   = var.droplet_image
+  droplet_region  = var.droplet_region
+  droplet_size    = var.droplet_size
+  a_record_name   = "{{ cookiecutter.staging_subdomain_name }}"
+  create_cname    = {% if cookiecutter.create_cname == "y" %}true{% else %}false{% endif %}
+
+  do_ssh_key_id     = data.terraform_remote_state.base.outputs.do_ssh_key_id
+  droplet_user_data = data.terraform_remote_state.base.outputs.droplet_user_data
+  do_project_id     = data.terraform_remote_state.base.outputs.do_project_id
+  gh_repo_name      = data.terraform_remote_state.base.outputs.gh_repo_name
+}

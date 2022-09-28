@@ -3,21 +3,30 @@
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
   "description": "Behold My Awesome Project!",
   "author_name": "Daniel Roy Greenfeld",
+  "gh_username": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}",
   "domain_name": "example.com",
-  "staging_domain_name": "staging-example.com",
-  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
+  "tfc_org_name": "some-terraform-cloud-org",
+  "email": "{{ cookiecutter.gh_username }}@example.com",
   "version": "0.1.0",
   "open_source_license": [
+    "GPLv3",
     "MIT",
     "BSD",
-    "GPLv3",
     "Apache Software License 2.0",
     "Not open source"
   ],
-  "timezone": "UTC",
+  "docker_compose_version": "2.12.2",
+  "droplet_user": "ubuntu",
+  "droplet_image": "ubuntu-22-04-x64",
+  "droplet_region": "fra1",
+  "droplet_size_stage": "s-1vcpu-1gb",
+  "droplet_size_prod": "s-2vcpu-4gb",
+  "staging_subdomain_name": "staging",
+  "create_cname": "y",
+  "timezone": "CET",
   "windows": "n",
   "use_pycharm": "n",
-  "use_docker": "n",
+  "use_docker": "y",
   "postgresql_version": [
     "14",
     "13",
@@ -54,10 +63,10 @@
   "use_whitenoise": "n",
   "use_heroku": "n",
   "ci_tool": [
+    "Github",
     "None",
     "Travis",
-    "Gitlab",
-    "Github"
+    "Gitlab"
   ],
   "keep_local_envs_in_vcs": "y",
   "debug": "n"
