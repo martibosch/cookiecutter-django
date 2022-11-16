@@ -1,8 +1,6 @@
----
-name: Question
-about: Please ask your question on StackOverflow, Discord or GitHub Discussions.
-labels: question
----
+______________________________________________________________________
+
+## name: Question about: Please ask your question on StackOverflow, Discord or GitHub Discussions. labels: question
 
 First, make sure to examine [the docs](https://cookiecutter-django.readthedocs.io/en/latest/). If that doesn't help, we recommend one of these 3 main channels:
 
