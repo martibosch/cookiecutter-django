@@ -24,7 +24,14 @@ pip install -r requirements/local.txt
 # Needs a git repo to find the project root
 git init
 git add .
-pre-commit run --show-diff-on-failure -a
+# pre-commit run --show-diff-on-failure -a
+# ACHTUNG: using `git commit` to be able to skip terraform validation, because it cannot
+# work properly without creating the repo in GitHub and setting up Terraform Cloud
+# credentials, which is a bit too much for tests/CI
+git config --global init.defaultBranch main
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+SKIP=terraform_validate git commit -m "initial commit"
 
 # run the project's tests
 pytest
