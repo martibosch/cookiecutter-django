@@ -18,15 +18,11 @@ cd my-awesome-project
 # Needs a git repo to find the project root
 # We don't have git inside Docker, so run it outside
 git init
+# change remote GitHub modules (needed for remote terraform cloud execution) for local ones (so that we can run terraform validate before the repo is actually in GitHub)
+find terraform/deploy/app -name \*.tf -exec sed -i "s|github.com/daniel-roy-greenfeld/my-awesome-project//terraform|../../..|g" {} \;
+find terraform/deploy/base -name \*.tf -exec sed -i "s|github.com/daniel-roy-greenfeld/my-awesome-project//terraform|../..|g" {} \;
 git add .
-# pre-commit run --show-diff-on-failure -a
-# ACHTUNG: using `git commit` to be able to skip terraform validation, because it cannot
-# work properly without creating the repo in GitHub and setting up Terraform Cloud
-# credentials, which is a bit too much for tests/CI
-git config --global init.defaultBranch main
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-SKIP=terraform_validate git commit -m "initial commit"
+pre-commit run --show-diff-on-failure -a
 
 # make sure all images build
 docker-compose -f local.yml build
