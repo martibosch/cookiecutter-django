@@ -30,7 +30,7 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 Running type checks with mypy:
 
-    $ mypy {{cookiecutter.project_slug}}
+    $ mypy {{cookiecutter.python_module_name}}
 
 ### Test coverage
 

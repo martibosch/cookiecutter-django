@@ -6,8 +6,8 @@ from pathlib import Path
 import environ
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-# {{ cookiecutter.project_slug }}/
-APPS_DIR = ROOT_DIR / "{{ cookiecutter.project_slug }}"
+# {{ cookiecutter.python_module_name }}/
+APPS_DIR = ROOT_DIR / "{{ cookiecutter.python_module_name }}"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -92,7 +92,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "{{ cookiecutter.project_slug }}.users",
+    "{{ cookiecutter.python_module_name }}.users",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -101,7 +101,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "{{ cookiecutter.project_slug }}.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "{{ cookiecutter.python_module_name }}.contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -201,7 +201,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "{{cookiecutter.project_slug}}.users.context_processors.allauth_settings",
+                "{{cookiecutter.python_module_name}}.users.context_processors.allauth_settings",
             ],
         },
     }
@@ -309,13 +309,13 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "{{cookiecutter.project_slug}}.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "{{cookiecutter.python_module_name}}.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-ACCOUNT_FORMS = {"signup": "{{cookiecutter.project_slug}}.users.forms.UserSignupForm"}
+ACCOUNT_FORMS = {"signup": "{{cookiecutter.python_module_name}}.users.forms.UserSignupForm"}
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "{{cookiecutter.project_slug}}.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "{{cookiecutter.python_module_name}}.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-SOCIALACCOUNT_FORMS = {"signup": "{{cookiecutter.project_slug}}.users.forms.UserSocialSignupForm"}
+SOCIALACCOUNT_FORMS = {"signup": "{{cookiecutter.python_module_name}}.users.forms.UserSocialSignupForm"}
 {% if cookiecutter.frontend_pipeline == 'Django Compressor' -%}
 # django-compressor
 # ------------------------------------------------------------------------------

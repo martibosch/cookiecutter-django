@@ -1,6 +1,6 @@
 from django.urls import resolve, reverse
 
-from {{ cookiecutter.project_slug }}.users.models import User
+from {{ cookiecutter.python_module_name }}.users.models import User
 
 
 def test_detail(user: User):

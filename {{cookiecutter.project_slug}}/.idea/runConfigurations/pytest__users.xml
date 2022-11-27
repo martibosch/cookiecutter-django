@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="pytest: users" type="tests" factoryName="py.test" singleton="true">
-    <module name="{{ cookiecutter.project_slug }}" />
+    <module name="{{ cookiecutter.python_module_name }}" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <option name="SDK_HOME" value="" />
@@ -18,7 +18,7 @@
     </PathMappingSettings>
     <option name="_new_keywords" value="&quot;&quot;" />
     <option name="_new_additionalArguments" value="&quot;&quot;" />
-    <option name="_new_target" value="&quot;./{{ cookiecutter.project_slug }}/users/&quot;" />
+    <option name="_new_target" value="&quot;./{{ cookiecutter.python_module_name }}/users/&quot;" />
     <option name="_new_targetType" value="&quot;PATH&quot;" />
     <method />
   </configuration>

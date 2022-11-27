@@ -12,7 +12,7 @@ cd .cache/docker
 
 # create the project using the default settings in cookiecutter.json
 cookiecutter ../../ --no-input --overwrite-if-exists use_docker=y "$@"
-cd my_awesome_project
+cd my-awesome-project
 
 # Lint by running pre-commit on all files
 # Needs a git repo to find the project root

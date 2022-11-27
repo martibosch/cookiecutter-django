@@ -12,7 +12,7 @@ cd .cache/bare
 
 # create the project using the default settings in cookiecutter.json
 cookiecutter ../../ --no-input --overwrite-if-exists use_docker=n "$@"
-cd my_awesome_project
+cd my-awesome-project
 
 # Install OS deps
 sudo utility/install_os_dependencies.sh install

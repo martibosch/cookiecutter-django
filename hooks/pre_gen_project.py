@@ -18,14 +18,21 @@ HINT = "\x1b[3;33m"
 SUCCESS = "\x1b[1;32m [SUCCESS]: "
 
 project_slug = "{{ cookiecutter.project_slug }}"
-if hasattr(project_slug, "isidentifier"):
+assert set(project_slug).issubset(
+    set(("0123456789abcdefghijklmnopqrstuvwxyz-."))
+), "'{}' project slug contains invalid characters.".format(project_slug)
+
+python_module_name = "{{ cookiecutter.python_module_name }}"
+if hasattr(python_module_name, "isidentifier"):
     assert (
-        project_slug.isidentifier()
-    ), "'{}' project slug is not a valid Python identifier.".format(project_slug)
+        python_module_name.isidentifier()
+    ), "'{}' python module name is not a valid Python identifier.".format(
+        python_module_name
+    )
 
 assert (
-    project_slug == project_slug.lower()
-), "'{}' project slug should be all lowercase".format(project_slug)
+    python_module_name == python_module_name.lower()
+), "'{}' python module name should be all lowercase".format(python_module_name)
 
 assert (
     "\\" not in "{{ cookiecutter.author_name }}"

@@ -25,7 +25,8 @@ elif sys.platform.startswith("darwin") and os.getenv("CI"):
 def context():
     return {
         "project_name": "My Test Project",
-        "project_slug": "my_test_project",
+        "project_slug": "my-test-project",
+        "python_module_name": "my_test_project",
         "author_name": "Test Author",
         "email": "test@example.com",
         "description": "A short description of the project.",
@@ -279,6 +280,17 @@ def test_github_invokes_linter_and_pytest(
 def test_invalid_slug(cookies, context, slug):
     """Invalid slug should fail pre-generation hook."""
     context.update({"project_slug": slug})
+
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code != 0
+    assert isinstance(result.exception, FailedHookException)
+
+
+@pytest.mark.parametrize("module_name", ["module name", "Module_Name"])
+def test_invalid_module_name(cookies, context, module_name):
+    """Invalid module name should fail pre-generation hook."""
+    context.update({"python_module_name": module_name})
 
     result = cookies.bake(extra_context=context)
 

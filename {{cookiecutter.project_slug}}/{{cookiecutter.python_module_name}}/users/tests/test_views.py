@@ -8,10 +8,10 @@ from django.http import HttpRequest, HttpResponseRedirect
 from django.test import RequestFactory
 from django.urls import reverse
 
-from {{ cookiecutter.project_slug }}.users.forms import UserAdminChangeForm
-from {{ cookiecutter.project_slug }}.users.models import User
-from {{ cookiecutter.project_slug }}.users.tests.factories import UserFactory
-from {{ cookiecutter.project_slug }}.users.views import (
+from {{ cookiecutter.python_module_name }}.users.forms import UserAdminChangeForm
+from {{ cookiecutter.python_module_name }}.users.models import User
+from {{ cookiecutter.python_module_name }}.users.tests.factories import UserFactory
+from {{ cookiecutter.python_module_name }}.users.views import (
     UserRedirectView,
     UserUpdateView,
     user_detail_view,
