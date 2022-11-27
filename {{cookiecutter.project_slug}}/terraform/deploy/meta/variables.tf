@@ -22,7 +22,7 @@ variable "resource_prefix" {}
 
 variable "droplet_image" {}
 
-variable "droplet_region" {}
+variable "do_region" {}
 
 variable "droplet_size_stage" {}
 

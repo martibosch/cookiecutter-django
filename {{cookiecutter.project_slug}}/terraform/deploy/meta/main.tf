@@ -135,9 +135,9 @@ resource "tfe_variable" "droplet_image" {
   variable_set_id = tfe_variable_set.app.id
 }
 
-resource "tfe_variable" "droplet_region" {
-  key             = "droplet_region"
-  value           = var.droplet_region
+resource "tfe_variable" "do_region" {
+  key             = "do_region"
+  value           = var.do_region
   category        = "terraform"
   variable_set_id = tfe_variable_set.app.id
 }

@@ -19,7 +19,7 @@
   "docker_compose_version": "2.12.2",
   "droplet_user": "ubuntu",
   "droplet_image": "ubuntu-22-04-x64",
-  "droplet_region": "fra1",
+  "do_region": "fra1",
   "droplet_size_stage": "s-1vcpu-1gb",
   "droplet_size_prod": "s-2vcpu-4gb",
   "staging_subdomain_name": "staging",
