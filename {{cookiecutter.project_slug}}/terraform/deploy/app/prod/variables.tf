@@ -2,7 +2,7 @@ variable "tfc_org_name" {}
 
 variable "tfc_base_workspace_name" {}
 
-variable "droplet_prefix" {}
+variable "resource_prefix" {}
 
 variable "droplet_image" {}
 

@@ -121,9 +121,9 @@ resource "tfe_variable" "tfc_base_workspace_name" {
   variable_set_id = tfe_variable_set.app.id
 }
 
-resource "tfe_variable" "droplet_prefix" {
-  key             = "droplet_prefix"
-  value           = var.droplet_prefix
+resource "tfe_variable" "resource_prefix" {
+  key             = "resource_prefix"
+  value           = var.resource_prefix
   category        = "terraform"
   variable_set_id = tfe_variable_set.app.id
 }

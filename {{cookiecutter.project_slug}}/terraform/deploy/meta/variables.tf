@@ -18,7 +18,7 @@ variable "gh_repo_name" {}
 
 variable "tf_api_token" {}
 
-variable "droplet_prefix" {}
+variable "resource_prefix" {}
 
 variable "droplet_image" {}
 
