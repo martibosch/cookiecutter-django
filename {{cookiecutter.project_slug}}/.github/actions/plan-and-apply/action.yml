@@ -7,36 +7,28 @@ inputs:
   tf-version:
     description: 'Terraform version. Example: "1.3.4".'
     required: false
-    type: string
     default: "1.3.4"
   tf-api-token:
     description: 'Terraform cloud API token.'
     required: true
-    type: string
   ssh-key:
     description: 'SSH key.'
     required: true
-    type: string
   droplet-host:
     description: 'Host of the droplet. Example: "172.16.254.1".'
     required: true
-    type: string
   env:
     description: 'Environment. Example: "prod".'
     required: true
-    type: string
   github-token:
     description: 'GitHub token.'
     required: true
-    type: string
   droplet-user:
     description: 'User to run commands in the droplet. Example: "ubuntu".'
     required: true
-    type: string
   compose-config-args:
     description: 'Docker compose config arguments. Example: "-f production.yml".'
     required: true
-    type: string
 
 runs:
   using: "composite"

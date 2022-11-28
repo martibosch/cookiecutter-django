@@ -1,10 +1,5 @@
 name: deploy
 
-# Enable Buildkit and let compose use it to speed up image building
-env:
-  DOCKER_BUILDKIT: 1
-  COMPOSE_DOCKER_CLI_BUILD: 1
-
 on:
   push:
     branches: [ "stage", "main" ]
@@ -41,8 +36,6 @@ jobs:
     environment: stage
     runs-on: ubuntu-latest
     if: {% raw %}${{ needs.extract-branch.outputs.branch == 'stage' }}{% endraw %}
-    strategy:
-      fail-fast: false
     steps:
       - name: plan and apply stage
         uses: ./.github/actions/plan-and-apply
@@ -60,8 +53,6 @@ jobs:
     environment: prod
     runs-on: ubuntu-latest
     if: {% raw %}${{ needs.extract-branch.outputs.branch == 'main' }}{% endraw %}
-    strategy:
-      fail-fast: false
     steps:
       - name: plan and apply stage
         uses: ./.github/actions/plan-and-apply
