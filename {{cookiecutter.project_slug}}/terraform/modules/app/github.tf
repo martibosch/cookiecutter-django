@@ -12,15 +12,9 @@ resource "github_actions_environment_secret" "droplet_host" {
 }
 
 resource "github_actions_environment_secret" "tfvars" {
-  for_each        = var.env_file_map
+  for_each        = jsondecode(var.env_file_map)
   repository      = var.gh_repo_name
   environment     = github_repository_environment.env.environment
   secret_name     = each.key
-  plaintext_value = fileexists(each.value) ? filebase64(each.value) : ""
-
-  lifecycle {
-    ignore_changes = [
-      plaintext_value
-    ]
-  }
+  plaintext_value = each.value
 }

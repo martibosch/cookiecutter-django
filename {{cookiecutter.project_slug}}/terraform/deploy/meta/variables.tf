@@ -26,7 +26,11 @@ variable "do_region" {}
 
 variable "droplet_size_stage" {}
 
+variable "env_file_map_stage" {}
+
 variable "droplet_size_prod" {}
+
+variable "env_file_map_prod" {}
 
 variable "do_token" {}
 

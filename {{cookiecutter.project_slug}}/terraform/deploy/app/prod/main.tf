@@ -18,6 +18,7 @@ module "app" {
   droplet_size    = var.droplet_size
   a_record_name   = "{{ cookiecutter.staging_subdomain_name }}"
   create_cname    = {% if cookiecutter.create_cname == "y" %}true{% else %}false{% endif %}
+  env_file_map    = var.env_file_map  
 
   do_ssh_key_id     = data.terraform_remote_state.base.outputs.do_ssh_key_id
   droplet_user_data = data.terraform_remote_state.base.outputs.droplet_user_data

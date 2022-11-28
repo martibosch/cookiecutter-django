@@ -23,6 +23,7 @@ module "app" {
   droplet_size    = var.droplet_size
   a_record_name   = "{{ cookiecutter.staging_subdomain_name }}"
   create_cname    = false
+  env_file_map    = var.env_file_map
 
   # do_ssh_key_id     = data.tfe_outputs.base.values.do_ssh_key_id
   # droplet_user_data = data.tfe_outputs.base.values.droplet_user_data

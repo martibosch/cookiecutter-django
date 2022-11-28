@@ -10,6 +10,8 @@ variable "do_region" {}
 
 variable "droplet_size" {}
 
+variable "env_file_map" {}
+
 variable "do_token" {}
 
 variable "gh_token" {}
