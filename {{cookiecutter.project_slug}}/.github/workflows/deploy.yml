@@ -35,7 +35,7 @@ jobs:
         shell: bash
         run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
-  
+
   plan-and-apply-stage:
     needs: extract-branch
     environment: stage
@@ -43,7 +43,7 @@ jobs:
     if: {% raw %}${{ needs.extract-branch.outputs.branch == 'stage' }}{% endraw %}
     strategy:
       fail-fast: false
-    steps:        
+    steps:
       - name: plan and apply stage
         uses: ./.github/actions/plan-and-apply
         with:
@@ -52,8 +52,8 @@ jobs:
           droplet-host: {% raw %}${{ secrets.DROPLET_HOST }}{% endraw %}
           env: stage
           github-token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
-          droplet-user: {% raw %}${{ secrets.DROPLET_USER }}{% endraw %}          
-          compose-config-args: "-f production.yml -f staging.yml"          
+          droplet-user: {% raw %}${{ secrets.DROPLET_USER }}{% endraw %}
+          compose-config-args: "-f production.yml -f staging.yml"
 
   plan-and-apply-prod:
     needs: extract-branch
@@ -62,7 +62,7 @@ jobs:
     if: {% raw %}${{ needs.extract-branch.outputs.branch == 'main' }}{% endraw %}
     strategy:
       fail-fast: false
-    steps:        
+    steps:
       - name: plan and apply stage
         uses: ./.github/actions/plan-and-apply
         with:
@@ -71,5 +71,5 @@ jobs:
           droplet-host: {% raw %}${{ secrets.DROPLET_HOST }}{% endraw %}
           env: stage
           github-token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
-          droplet-user: {% raw %}${{ secrets.DROPLET_USER }}{% endraw %}          
+          droplet-user: {% raw %}${{ secrets.DROPLET_USER }}{% endraw %}
           compose-config-args: "-f production.yml"

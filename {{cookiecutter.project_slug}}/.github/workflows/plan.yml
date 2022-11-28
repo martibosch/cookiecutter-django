@@ -14,7 +14,7 @@ concurrency:
   group: {% raw %}${{ github.head_ref || github.run_id }}{% endraw %}
   cancel-in-progress: true
 
-jobs:          
+jobs:
   build-and-plan-stage:
     environment: stage
     runs-on: ubuntu-latest
@@ -38,7 +38,7 @@ jobs:
       - name: build and plan prod
         uses: ./.github/actions/build-and-plan
         with:
-          compose-config-args: "-f production.yml"             
+          compose-config-args: "-f production.yml"
           tf-api-token: {% raw %}${{ secrets.TF_API_TOKEN }}{% endraw %}
           ssh-key: {% raw %}${{ secrets.TF_API_TOKEN }}{% endraw %}
           droplet-host: {% raw %}${{ secrets.DROPLET_HOST }}{% endraw %}

@@ -57,7 +57,7 @@ runs:
         name: id_rsa # optional
         known_hosts: unnecessary
         if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
-     
+
     - name: add known hosts
       run: ssh-keyscan -H {% raw %}${{ inputs.droplet-host }}{% endraw %} >> ~/.ssh/known_hosts
 
@@ -74,7 +74,7 @@ runs:
       id: apply
       continue-on-error: true
       run: make apply-{% raw %}${{ inputs.env }}{% endraw %} TF_FLAGS="-auto-approve -input=false -no-color"
-      
+
     - name: post plan and apply to github PR
       if: steps.plan.outcome == 'success' && steps.apply.outcome == 'success'
       uses: mshick/add-pr-comment@v1

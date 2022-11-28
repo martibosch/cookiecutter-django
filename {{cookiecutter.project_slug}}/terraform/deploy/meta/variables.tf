@@ -35,5 +35,3 @@ variable "env_file_map_prod" {}
 variable "do_token" {}
 
 variable "gh_token" {}
-
-

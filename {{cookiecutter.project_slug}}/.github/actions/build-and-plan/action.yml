@@ -39,7 +39,7 @@ runs:
   steps:
     - name: checkout code repository
       uses: actions/checkout@v3
-    
+
     - name: build the stack
       run:  docker-compose {% raw %}${{ inputs.compose-config-args }}{% endraw %} up -d --build
 
@@ -59,7 +59,7 @@ runs:
         name: id_rsa # optional
         known_hosts: unnecessary
         if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
-     
+
     - name: add known hosts
       run: ssh-keyscan -H {% raw %}${{ inputs.droplet-host }}{% endraw %} >> ~/.ssh/known_hosts
 
@@ -70,7 +70,7 @@ runs:
       id: plan
       continue-on-error: true
       run: make plan-{% raw %}${{ inputs.env }}{% endraw %}="-input=false -no-color"
-      
+
     - name: post plan to github PR
       uses: mshick/add-pr-comment@v1
       with:

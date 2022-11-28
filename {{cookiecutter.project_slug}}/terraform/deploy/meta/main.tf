@@ -174,7 +174,7 @@ resource "tfe_variable" "env_file_map_stage" {
   # this variable on terraform cloud, and this remains unchanged. In case the variable
   # actually needs a change, it can be done via
   # `terraform destroy --target tfe_variable.env_file_map_stage` followed by
-  # `terraform apply`   
+  # `terraform apply`
 }
 
 resource "tfe_variable" "droplet_size_prod" {
@@ -204,7 +204,7 @@ resource "tfe_variable" "env_file_map_prod" {
   # this variable on terraform cloud, and this remains unchanged. In case the variable
   # actually needs a change, it can be done via
   # `terraform destroy --target tfe_variable.env_file_map_prod` followed by
-  # `terraform apply` 
+  # `terraform apply`
   lifecycle {
     ignore_changes = [
       value
