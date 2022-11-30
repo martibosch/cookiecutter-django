@@ -16,6 +16,8 @@ do_project_name        = "{{ cookiecutter.project_slug }}"
 do_project_description = "{{ cookiecutter.description | escape}}"
 
 # tokens
-do_token     = ""
-gh_token     = ""
-tf_api_token = ""
+do_token             = ""
+do_spaces_access_id  = ""
+do_spaces_secret_key = ""
+gh_token             = ""
+tf_api_token         = ""
