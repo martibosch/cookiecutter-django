@@ -38,7 +38,7 @@ SPARKPOST_API_KEY=
 # ------------------------------------------------------------------------------
 DJANGO_AWS_ACCESS_KEY_ID=
 DJANGO_AWS_SECRET_ACCESS_KEY=
-DJANGO_AWS_STORAGE_BUCKET_NAME=
+DJANGO_AWS_STORAGE_BUCKET_NAME={{ cookiecutter.project_slug }}-prod
 {% elif cookiecutter.cloud_provider == 'GCP' %}
 # GCP
 # ------------------------------------------------------------------------------

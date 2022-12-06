@@ -9,7 +9,7 @@ DJANGO_SECURE_SSL_REDIRECT=False
 {% if cookiecutter.cloud_provider == 'AWS' %}
 # AWS
 # ------------------------------------------------------------------------------
-DJANGO_AWS_STORAGE_BUCKET_NAME=
+DJANGO_AWS_STORAGE_BUCKET_NAME={{ cookiecutter.project_slug }}-stage
 {% elif cookiecutter.cloud_provider == 'GCP' %}
 # GCP
 # ------------------------------------------------------------------------------
