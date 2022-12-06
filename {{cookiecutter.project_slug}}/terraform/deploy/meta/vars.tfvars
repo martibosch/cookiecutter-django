@@ -9,9 +9,7 @@ resource_prefix        = "{{ cookiecutter.project_slug }}"
 droplet_image          = "{{ cookiecutter.droplet_image }}"
 do_region              = "{{ cookiecutter.do_region }}"
 droplet_size_stage     = "{{ cookiecutter.droplet_size_stage }}"
-env_file_map_stage     = { production_django = ".envs/.production/.django", production_postgres = ".envs/.production/.postgres", production_traefik = ".envs/.production/.traefik", staging_django = ".envs/.staging/.django", staging_traefik = ".envs/.staging/.traefik" }
 droplet_size_prod      = "{{ cookiecutter.droplet_size_prod }}"
-env_file_map_prod      = { production_django = ".envs/.production/.django", production_postgres = ".envs/.production/.postgres", production_traefik = ".envs/.production/.traefik" }
 do_project_name        = "{{ cookiecutter.project_slug }}"
 do_project_description = "{{ cookiecutter.description | escape}}"
 
