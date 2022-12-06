@@ -9,6 +9,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
 {%- if cookiecutter.use_docker == 'y' %}
 
@@ -22,6 +24,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -30,6 +34,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -38,6 +44,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -46,6 +54,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -54,6 +64,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -62,6 +74,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -70,6 +84,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
 {%- endif %}
 
@@ -81,6 +97,8 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
 {%- if cookiecutter.frontend_pipeline == 'Gulp' %}
 
@@ -91,5 +109,7 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Raise pull requests for version updates against the `develop` branch
+    target-branch: "develop"
 
 {%- endif %}
