@@ -37,6 +37,8 @@ jobs:
     runs-on: ubuntu-latest
     if: {% raw %}${{ needs.extract-branch.outputs.branch == 'stage' }}{% endraw %}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
       - name: plan and apply stage
         uses: ./.github/actions/plan-and-apply
         with:
@@ -54,6 +56,8 @@ jobs:
     runs-on: ubuntu-latest
     if: {% raw %}${{ needs.extract-branch.outputs.branch == 'main' }}{% endraw %}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3.1.0      
       - name: plan and apply stage
         uses: ./.github/actions/plan-and-apply
         with:
