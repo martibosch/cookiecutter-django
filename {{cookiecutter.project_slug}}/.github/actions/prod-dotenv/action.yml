@@ -19,18 +19,18 @@ runs:
       with:
         fileName: '.django'
         fileDir: './.envs/.production/'
-        encodedString: ${{ inputs.prod-django }}
+        encodedString: {% raw %}${{ inputs.prod-django }}{% endraw %}
 
     - name:
       uses: timheuer/base64-to-file@v1.2
       with:
         fileName: '.postgres'
         fileDir: './.envs/.production/'
-        encodedString: ${{ inputs.prod-postgres }}
+        encodedString: {% raw %}${{ inputs.prod-postgres }}{% endraw %}
 
     - name:
       uses: timheuer/base64-to-file@v1.2
       with:
         fileName: '.traefik'
         fileDir: './.envs/.production/'
-        encodedString: ${{ inputs.prod-traefik }}
+        encodedString: {% raw %}${{ inputs.prod-traefik }}{% endraw %}

@@ -17,11 +17,11 @@ runs:
       with:
         fileName: '.django'
         fileDir: './.envs/.staging/'
-        encodedString: ${{ inputs.stage-django }}
+        encodedString: {% raw %}${{ inputs.stage-django }}{% endraw %}
 
     - name:
       uses: timheuer/base64-to-file@v1.2
       with:
         fileName: '.traefik'
         fileDir: './.envs/.staging/'
-        encodedString: ${{ inputs.stage-traefik }}
+        encodedString: {% raw %}${{ inputs.stage-traefik }}{% endraw %}

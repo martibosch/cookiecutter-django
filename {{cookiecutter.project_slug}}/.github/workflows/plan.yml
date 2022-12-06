@@ -25,14 +25,14 @@ jobs:
       - name: get production dotenv files from secrets
         uses: ./.github/actions/prod-dotenv
         with:
-          prod-django: ${{ secrets.PRODUCTION_DJANGO }}
-          prod-postgres: ${{ secrets.PRODUCTION_POSTGRES }}
-          prod-traefik: ${{ secrets.PRODUCTION_TRAEFIK }}
+          prod-django: {% raw %}${{ secrets.PRODUCTION_DJANGO }}{% endraw %}
+          prod-postgres: {% raw %}${{ secrets.PRODUCTION_POSTGRES }}{% endraw %}
+          prod-traefik: {% raw %}${{ secrets.PRODUCTION_TRAEFIK }}{% endraw %}
       - name: get staging dotenv files from secrets
         uses: ./.github/actions/stage-dotenv
         with:
-          stage-django: ${{ secrets.STAGING_DJANGO }}
-          stage-traefik: ${{ secrets.STAGING_TRAEFIK }}
+          stage-django: {% raw %}${{ secrets.STAGING_DJANGO }}{% endraw %}
+          stage-traefik: {% raw %}${{ secrets.STAGING_TRAEFIK }}{% endraw %}
       - name: build and plan stage
         uses: ./.github/actions/plan
         with:
@@ -53,9 +53,9 @@ jobs:
       - name: get production dotenv files from secrets
         uses: ./.github/actions/prod-dotenv
         with:
-          prod-django: ${{ secrets.PRODUCTION_DJANGO }}
-          prod-postgres: ${{ secrets.PRODUCTION_POSTGRES }}
-          prod-traefik: ${{ secrets.PRODUCTION_TRAEFIK }}
+          prod-django: {% raw %}${{ secrets.PRODUCTION_DJANGO }}{% endraw %}
+          prod-postgres: {% raw %}${{ secrets.PRODUCTION_POSTGRES }}{% endraw %}
+          prod-traefik: {% raw %}${{ secrets.PRODUCTION_TRAEFIK }}{% endraw %}
       - name: build and plan prod
         uses: ./.github/actions/plan
         with:
