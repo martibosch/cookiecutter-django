@@ -38,7 +38,7 @@ jobs:
         with:
           compose-config-args: "-f production.yml -f staging.yml"
           tf-api-token: {% raw %}${{ secrets.TF_API_TOKEN }}{% endraw %}
-          ssh-key: {% raw %}${{ secrets.TF_API_TOKEN }}{% endraw %}
+          ssh-key: {% raw %}${{ secrets.SSH_KEY }}{% endraw %}
           droplet-host: {% raw %}${{ secrets.DROPLET_HOST }}{% endraw %}
           env: stage
           github-token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
@@ -61,7 +61,7 @@ jobs:
         with:
           compose-config-args: "-f production.yml"
           tf-api-token: {% raw %}${{ secrets.TF_API_TOKEN }}{% endraw %}
-          ssh-key: {% raw %}${{ secrets.TF_API_TOKEN }}{% endraw %}
+          ssh-key: {% raw %}${{ secrets.SSH_KEY }}{% endraw %}
           droplet-host: {% raw %}${{ secrets.DROPLET_HOST }}{% endraw %}
           env: prod
           github-token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
