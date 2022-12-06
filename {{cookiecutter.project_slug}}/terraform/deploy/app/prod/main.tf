@@ -16,7 +16,7 @@ module "app" {
   droplet_image   = var.droplet_image
   do_region       = var.do_region
   droplet_size    = var.droplet_size
-  a_record_name   = "{{ cookiecutter.staging_subdomain_name }}"
+  a_record_name   = "@"
   create_cname    = {% if cookiecutter.create_cname == "y" %}true{% else %}false{% endif %}
   env_file_map    = var.env_file_map
 
