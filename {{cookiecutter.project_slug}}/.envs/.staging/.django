@@ -10,6 +10,7 @@ DJANGO_SECURE_SSL_REDIRECT=False
 # AWS
 # ------------------------------------------------------------------------------
 DJANGO_AWS_STORAGE_BUCKET_NAME={{ cookiecutter.project_slug }}-stage
+DJANGO_AWS_S3_CUSTOM_DOMAIN={{ cookiecutter.project_slug }}-stage.{{ cookiecutter.do_region }}.digitaloceanspaces.com
 {% elif cookiecutter.cloud_provider == 'GCP' %}
 # GCP
 # ------------------------------------------------------------------------------
