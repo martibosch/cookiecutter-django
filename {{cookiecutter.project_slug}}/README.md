@@ -1,140 +1,218 @@
-# {{cookiecutter.project_name}}
+# {{ cookiecutter.project_name }}
+
+[![ci](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/actions/workflows/ci.yml/badge.svg)](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/actions/workflows/ci.yml)
+[![deploy](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/actions/workflows/deploy.yml?query=branch%3Amain)
+[![GitHub license](https://img.shields.io/github/license/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}.svg)](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/blob/main/LICENSE)
+[![Built with Doge](https://img.shields.io/badge/built%20with-Doge-orange)](https://github.com/martibosch/cookiecutter-django-doge)
 
 {{ cookiecutter.description }}
 
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
-[![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+This setup is based on [cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django). See [its documentation](https://cookiecutter-django.readthedocs.io/en/latest) for more information.
 
-{%- if cookiecutter.open_source_license != "Not open source" %}
+## Requirements
 
-License: {{cookiecutter.open_source_license}}
-{%- endif %}
+### Software
 
-## Settings
+* [GNU Make](https://www.gnu.org/software/make/)
+* [terraform](https://www.terraform.io/)
+* [git](https://git-scm.com/) >=2.28.0
+* [pre-commit](https://pre-commit.com/)
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+Optional (recommended):
 
-## Basic Commands
+* [GitHub CLI](https://cli.github.com/) (if you want to create the GitHub repository from the terminal).
 
-### Setting Up Your Users
+### Accounts
 
--   To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+* A DigitalOcean account. You can sign up using [my referral link](https://m.do.co/c/fcde1e9e1f62) to get $100 in credit.
+* A GitHub account.
+* A Terraform Cloud account and a Terraform Cloud organization. With an active account, you can create an organization by navigating to [app.terraform.io/app/organizations/new](https://app.terraform.io/app/organizations/new). You can also use an existing organization. This workflow is compatible with [the free plan](https://www.terraform.io/cloud-docs/overview).
 
--   To create a **superuser account**, use this command:
+### Domain
 
-        $ python manage.py createsuperuser
+* A domain name, which can be from any domain registrar, but must point to the DigitalOcean nameservers. The latter can be achieved following the instructions [docs.digitalocean.com/tutorials/dns-registrars](https://docs.digitalocean.com/tutorials/dns-registrars).
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+## Steps
 
-### Type checks
+:warning: **Note**: it is very important that the steps are followed **in the order** outlined below:
 
-Running type checks with mypy:
+### 1. Create access tokens (or use existing ones)
 
-    $ mypy {{cookiecutter.python_module_name}}
+The cookiecutter-django-doge :dog2: workflow requires the following access tokens, which can be created as listed below - alternatively, existing tokens may be used:
 
-### Test coverage
+* **DigitalOcean**:
+  * **API token**: navigate to [cloud.digitalocean.com/account/api/token/new](https://cloud.digitalocean.com/account/api/tokens/new) (you must be authenticated), choose a name and an expiration, click on "Generate Token" and copy the generated token as the value of the `do_token` variable.
+  * **Spaces access keys**: navigate to [cloud.digitalocean.com/account/api](https://cloud.digitalocean.com/account/api), scroll down to the "Spaces access keys" section, click on "Generate New Key", provide an informative name and copy the generated key and secret as the values of the `do_spaces_access_id` and `do_spaces_secret_key` respectively.
+* **GitHub**: navigate to [github.com/settings/tokens/new](https://github.com/settings/tokens/new) (you must be authenticated), choose a name, an expiration and select at least the `repo`, `read:org` and `read:discussion` permissions (and `delete_repo` if you want to be able to delete the repository from Terraform). Click on "Generate token" and copy the generated token as the value of the `gh_token` variable.
+* **Terraform Cloud**: navigate to [app.terraform.io/app/settings/tokens](https://app.terraform.io/app/settings/tokens) and click on "Create an API token", provide a description, click on "Create API token" and copy the generated token as the value of the `tf_api_token` variable.
 
-To run the tests, check your test coverage, and generate an HTML coverage report:
+The access tokens (generated or exising) must be set in the `terraform/deploy/meta/vars.tfvars` and `terraform/deploy/dotenv/vars.tfvars` (as terraform variables), as well as in `.envs/.production/.django` (environment variables) as follows:
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+```
+# terraform/deploy/meta/vars.tfvars
 
-#### Running tests with pytest
-
-    $ pytest
-
-### Live reloading and Sass CSS compilation
-
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
-
-{%- if cookiecutter.use_celery == "y" %}
-
-### Celery
-
-This app comes with Celery.
-
-To run a celery worker:
-
-``` bash
-cd {{cookiecutter.project_slug}}
-celery -A config.celery_app worker -l info
+...
+# tokens
+do_token             = "<token-contents>"  # DigitalOcean API token
+do_spaces_access_id  = "<token-contents>"  # DigitalOcean spaces access key ID
+do_spaces_secret_key = "<token-contents>"  # DigitalOcean spaces secret key
+gh_token             = "<token-contents>"  # GitHub personal access token
+tf_api_token         = "<token-contents>"  # Terraform Cloud API token
 ```
 
-Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
+```
+# terraform/deploy/dotenv/vars.tfvars
 
-{%- endif %}
-{%- if cookiecutter.use_mailhog == "y" %}
+...
+# tokens
+tf_api_token         = "<token-contents>"  # Terraform Cloud API token
+```
 
-### Email Server
+```
+# .envs/.production/.django
+# there is no need to use quotes here (unless the values contain whitespaces)
+DJANGO_AWS_ACCESS_KEY_ID=<token-contents>  # DigitalOcean spaces access key ID
+DJANGO_AWS_SECRET_ACCESS_KEY=<token-contents>  # DigitalOcean spaces secret key ID
+```
 
-{%- if cookiecutter.use_docker == "y" %}
+:warning: **Note**: in order to avoid disclosing sensitive information, these files *are kept out of version control*.
 
-In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [MailHog](https://github.com/mailhog/MailHog) with a web interface is available as docker container.
+### 2. Initial infrastructure provisioning
 
-Container mailhog will start automatically when you will run all docker containers.
-Please check [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
+The initial infrastructure provisioning in the cookiecutter-django-doge workflow is done by running Terraform locally with the help of GNU Make. This will set up the required GitHub infrastructure (notably [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)) so that the rest of the workflow is fully managed by GitHub Actions.
 
-With MailHog running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
-{%- else %}
+:warning: **Note**: the initial infrastructure provisioning is only done once.
 
-In development, it is often nice to be able to see emails that are being sent from your application. If you choose to use [MailHog](https://github.com/mailhog/MailHog) when generating the project a local SMTP server with a web interface will be available.
+#### 2.1 Bootstraping Terraform Cloud workspaces
 
-1.  [Download the latest MailHog release](https://github.com/mailhog/MailHog/releases) for your OS.
+From the root of the generated project, use the following command to provision the meta workspace (i.e., a workspace to manage workspaces<sup>[1](#managing-workspaces-scale-factory), [2](#bootstraping-workspaces)):
 
-2.  Rename the build to `MailHog`.
+```bash
+make init-meta
+```
 
-3.  Copy the file to the project root.
+At this point, if you navigate to [app.terraform.io/app/{{ cookiecutter.tfc_org_name }}/workspaces](https://app.terraform.io/app/{{ cookiecutter.tfc_org_name }}/workspaces), a workspace named `{{ cookiecutter.project_slug }}-meta` should appear.
 
-4.  Make it executable:
+You can then plan and apply the Terraform setup as follows:
 
-        $ chmod +x MailHog
+```bash
+make plan-meta
+make apply-meta
+```
 
-5.  Spin up another terminal window and start it there:
+which will create four additional workspaces, named `{{ cookiecutter.project_slug }}-base`, `{{ cookiecutter.project_slug }}-dotenv`, `{{ cookiecutter.project_slug }}-stage` and `{{ cookiecutter.project_slug }}-prod`.
 
-        ./MailHog
+#### 2.2 GitHub repository and base infrastructure
 
-6.  Check out <http://127.0.0.1:8025/> to see how it goes.
+The GitHub repository can be created in two ways:
 
-Now you have your own mail server running locally, ready to receive whatever you send it.
+* *using the [GitHub CLI](https://cli.github.com/)* (*recommended*): first, make sure that you are properly authenticated with the GitHub CLI (use the [`gh auth login`](https://cli.github.com/manual/gh_auth_login) command). Then, from the root of the generated project, run:
 
-{%- endif %}
+    ```bash
+	make create-repo
+	```
 
-{%- endif %}
-{%- if cookiecutter.use_sentry == "y" %}
+	which will automatically initialize a git repository locally, add the first commit, and push it to a GitHub repository at `{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}`.
 
-### Sentry
+* *manually from the GitHub web interface*: navigate to [github.com/new](https://github.com/new), create a new empty repository at `{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}`. Then, from the root of the generated project, initialize a git repository, setup pre-commit for the repository, add the first commit and push it to the new GitHub repository as follows:
 
-Sentry is an error logging aggregator service. You can sign up for a free account at <https://sentry.io/signup/?code=cookiecutter> or download and host it yourself.
-The system is set up with reasonable defaults, including 404 logging and integration with the WSGI application.
+	```bash
+	git init --initial-branch=main  # this only works for git >= 2.28.0
+	pre-commit install
+	git add .
+	SKIP=terraform_validate git commit -m "first commit"
+	git branch -M main
+	git remote add origin git@github.com:{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}
+	git push -u origin main
+	```
 
-You must set the DSN url in production.
-{%- endif %}
+Once the initial commit has been pushed to GitHub, use GNU Make to provision some base infrastructure:
 
-## Deployment
+```bash
+make init-base
+make plan-base
+make apply-base
+```
 
-The following details how to deploy this application.
-{%- if cookiecutter.use_heroku.lower() == "y" %}
+notably, a ssh key will be created and added to terraform, DigitalOcean (you can see a new item named `{{ cookiecutter.project_slug }}` at [cloud.digitalocean.com/account/security](https://cloud.digitalocean.com/account/security), and [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) (you can see a repository secret named `SSH_KEY` at [github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/settings/secrets/actions](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/settings/secrets/actions)). Additionally, a DigitalOcean project (an item named `{{ cookiecutter.project_slug }}` visible in the top-left "PROJECTS" menu of the web interface) will be created to group the resources used for this app.
 
-### Heroku
+#### 2.3 Dotenv files
 
-See detailed [cookiecutter-django Heroku documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-on-heroku.html).
+The docker-compose setup uses a set of environment variables for each environment (local, staging and production) defined in the `.envs` directory, whose files are provisioned by Terraform as repository secrets (file contents encoded as base64 strings) so that they can be used in GitHub Actions. This is done in the `{{ cookiecutter.project_slug }}-dotenv` workspace, which unlike the other workspaces, is executed locally so that it can read the contents of the `.envs/.staging` and `.envs/.production` directories, which as noted above, are kept outside version control to prevent disclosing sensitive information. The provisioning is also be done using GNU Make following the Terraform init-plan-apply scheme:
 
-{%- endif %}
-{%- if cookiecutter.use_docker.lower() == "y" %}
+```bash
+make init-dotenv
+make plan-dotenv
+make apply-dotenv
+```
 
-### Docker
+Once the above commands are executed, a map of the `.env` files and their base64-encoded contents will be defined as the `env_file_map` workspace variable in both the staging and production workspaces, i.e., [app.terraform.io/app/{{ cookiecutter.tfc_org_name }}/workspaces/{{ cookiecutter.project_slug }}-stage/variables](https://app.terraform.io/app/{{ cookiecutter.tfc_org_name }}/workspaces/{{ cookiecutter.project_slug }}-stage/variables) and [app.terraform.io/app/{{ cookiecutter.tfc_org_name }}/workspaces/{{ cookiecutter.project_slug }}-prod/variables](https://app.terraform.io/app/{{ cookiecutter.tfc_org_name }}/workspaces/{{ cookiecutter.project_slug }}-prod/variables) respectively.
 
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+#### 2.4 Staging and production infrastructure
 
-{%- endif %}
-{%- if cookiecutter.frontend_pipeline == 'Gulp' %}
-### Custom Bootstrap Compilation
+The inital provisioning of the staging and production infrastructure must also be done using GNU Make following the Terraform init-plan-apply scheme, i.e., for the staging environment:
 
-The generated CSS is set up with automatic Bootstrap recompilation with variables of your choice.
-Bootstrap v5 is installed using npm and customised by tweaking your variables in `static/sass/custom_bootstrap_vars`.
+```bash
+make init-stage
+make plan-stage
+make apply-stage
+```
 
-You can find a list of available variables [in the bootstrap source](https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss), or get explanations on them in the [Bootstrap docs](https://getbootstrap.com/docs/5.1/customize/sass/).
+and for production:
 
-Bootstrap's javascript as well as its dependencies is concatenated into a single file: `static/js/vendors.js`.
-{%- endif %}
+```bash
+make init-prod
+make plan-prod
+make apply-prod
+```
+
+If you navigate to [cloud.digitalocean.com](https://cloud.digitalocean.com) and select the `{{ cookiecutter.project_slug }}` project, you will see that droplets named `{{ cookiecutter.project_slug }}-stage` and `{{ cookiecutter.project_slug }}-prod` have been created for each environment respectively. Additionally, at [github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/settings/secrets/actions](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/settings/secrets/actions)), you will find the following [environment secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-environment):
+
+* `DROPLET_HOST`: IPv4 address of the staging and production hosts respectively.
+* `PROD_DJANGO`, `PROD_POSTGRES` and `PROD_TRAEFIK`: base64-encoded strings with the contents of the files at `.envs/.production`, which will be set for both the `stage` and `prod` environments.
+* `STAGE_DJANGO` and `STAGE_TRAEFIK`: base64-encoded strings with the contents of the files at `.envs/.staging`, which will be set for the `stage` environment only.
+
+### 3. GitOps workflow for CI/CD
+
+Once the initial infrastructure has been provisioned, CI/CD is ensured by the following GitOps workflow:
+
+1. New features are pushed into a dedicated feature branch.
+2. **develop**: a pull request (PR) to the `develop` branch is created, at which point [CI workflow](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/blob/main/.github/workflows/ci.yml) is run. If the CI workflow passes, the PR is merged, otherwise, fixes are provided in the feature branch until the CI workflow passes.
+3. **stage**: once one or more feature PR are merged into the `develop` branch, they can be deployed to the staging environment by creating a PR to the `stage` branch, which will trigger the ["plan" workflow](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/blob/main/.github/workflows/plan.yml). If successful, the PR is merged, at which point the ["deploy" workflow](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/blob/main/.github/workflows/deploy.yml) is run, which will deploy the branch contents to the staging environment.
+4. **main**: after a successful deployment to staging, a PR from the stage to the main branch will trigger the ["plan" workflow](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/blob/main/.github/workflows/plan.yml), yet this time for the production environment. Likewise, If the workflow passes, the PR can be merged, which will trigger the ["deploy" workflow](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/blob/main/.github/workflows/deploy.yml), which will deploy the branch contents to production.
+
+Overall, the Doge :dog2: GitOps workflow can be represented as follows:
+
+```mermaid
+gitGraph:
+    commit id:"some commit"
+    branch stage
+    branch develop
+    branch some-feature
+    checkout some-feature
+    commit id:"add feature"
+    checkout develop
+    merge some-feature tag:"CI (lint, build)"
+    checkout stage
+    merge develop tag:"deploy stage"
+    checkout main
+    merge stage tag:"deploy prod"
+```
+
+## Destroying infrastructure
+
+The infrastructure provisioned by this setup can be destroyed using GNU Make as follows:
+
+```bash
+make destroy-prod
+make destroy-stage
+make destroy-dotenv
+make destroy-base
+make destroy-meta
+```
+
+## Footnotes
+
+<a name="managing-workspaces-scale-factory">1</a>. ["Managing Workspaces With the TFE Provider at Scale Factory"](https://www.hashicorp.com/resources/managing-workspaces-with-the-tfe-provider-at-scale-factory)
+
+<a name="managing-workspaces-scale-factory">2</a>. [response by chrisarcand in "Using variables with remote backend"](https://discuss.hashicorp.com/t/using-variables-with-remote-backend/24531/2)
