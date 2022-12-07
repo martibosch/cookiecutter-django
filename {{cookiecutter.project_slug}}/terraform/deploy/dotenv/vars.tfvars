@@ -4,4 +4,4 @@ env_file_map_stage = { prod_django = "../../../.envs/.production/.django", prod_
 env_file_map_prod  = { prod_django = "../../../.envs/.production/.django", prod_postgres = "../../../.envs/.production/.postgres", prod_traefik = "../../../.envs/.production/.traefik" }
 
 # tokens
-tf_api_token = ""
+tf_api_token = "" # Terraform Cloud API token
