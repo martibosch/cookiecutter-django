@@ -2,8 +2,14 @@
 
 [![ci](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/actions/workflows/ci.yml/badge.svg)](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/actions/workflows/ci.yml)
 [![deploy](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/actions/workflows/deploy.yml?query=branch%3Amain)
-[![GitHub license](https://img.shields.io/github/license/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}.svg)](https://github.com/{{ cookiecutter.gh_username }}/{{ cookiecutter.project_slug }}/blob/main/LICENSE)
 [![Built with Doge](https://img.shields.io/badge/built%20with-Doge-orange)](https://github.com/martibosch/cookiecutter-django-doge)
+[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
+[![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+
+{%- if cookiecutter.open_source_license != "Not open source" %}
+
+License: {{cookiecutter.open_source_license}}
+{%- endif %}
 
 {{ cookiecutter.description }}
 
