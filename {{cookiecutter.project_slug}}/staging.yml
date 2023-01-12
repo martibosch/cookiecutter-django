@@ -7,6 +7,12 @@ services:
   traefik:
     env_file:
       - ./.envs/.staging/.traefik
+  {%- if cookiecutter.use_celery == 'y' %}
+
+  celeryworker: *django
+
+  celerybeat: *django
+  {%- endif %}
   {%- if cookiecutter.cloud_provider == 'AWS' %}
 
   awscli:
