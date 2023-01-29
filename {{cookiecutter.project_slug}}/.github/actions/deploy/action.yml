@@ -119,7 +119,7 @@ runs:
 
     - name: deploy with rsync
       shell: bash
-      run: rsync -avz . {% raw %}${{ inputs.droplet-user }}{% endraw %}@{% raw %}${{ inputs.droplet-host }}{% endraw %}:~
+      run: rsync -avz --mkpath . {% raw %}${{ inputs.droplet-user }}{% endraw %}@{% raw %}${{ inputs.droplet-host }}{% endraw %}:~/app
 
     - name: docker compose up
       uses: appleboy/ssh-action@master
@@ -127,4 +127,6 @@ runs:
         host: {% raw %}${{ inputs.droplet-host }}{% endraw %}
         username: {% raw %}${{ inputs.droplet-user }}{% endraw %}
         key: {% raw %}${{ inputs.ssh-key }}{% endraw %}
-        script: docker-compose {% raw %}${{ inputs.compose-config-args }}{% endraw %} up -d --build
+        script: |
+          cd app
+          docker-compose {% raw %}${{ inputs.compose-config-args }}{% endraw %} up -d --build
