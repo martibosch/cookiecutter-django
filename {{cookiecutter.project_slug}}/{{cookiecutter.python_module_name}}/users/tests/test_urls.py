@@ -4,11 +4,13 @@ from {{ cookiecutter.python_module_name }}.users.models import User
 
 
 def test_detail(user: User):
-    assert (
-        reverse("users:detail", kwargs={"username": user.username})
-        == f"/users/{user.username}/"
-    )
+    {%- if cookiecutter.username_type == "email" %}
+    assert reverse("users:detail", kwargs={"pk": user.pk}) == f"/users/{user.pk}/"
+    assert resolve(f"/users/{user.pk}/").view_name == "users:detail"
+    {%- else %}
+    assert reverse("users:detail", kwargs={"username": user.username}) == f"/users/{user.username}/"
     assert resolve(f"/users/{user.username}/").view_name == "users:detail"
+    {%- endif %}
 
 
 def test_update():

@@ -20,28 +20,17 @@ sudo utility/install_os_dependencies.sh install
 # Install Python deps
 pip install -r requirements/local.txt
 
-# Lint by running pre-commit on all files
-# Needs a git repo to find the project root
-git init
-# change remote GitHub modules (needed for remote terraform cloud execution) for local ones (so that we can run terraform validate before the repo is actually in GitHub)
-find terraform/deploy/app -name \*.tf -exec sed -i "s|github.com/daniel-roy-greenfeld/my-awesome-project//terraform|../../..|g" {} \;
-find terraform/deploy/base -name \*.tf -exec sed -i "s|github.com/daniel-roy-greenfeld/my-awesome-project//terraform|../..|g" {} \;
-git add .
-pre-commit run --show-diff-on-failure -a
-
 # run the project's tests
 pytest
 
 # Make sure the check doesn't raise any warnings
 python manage.py check --fail-level WARNING
 
+# Run npm build script if package.json is present
 if [ -f "package.json" ]
 then
     npm install
-    if [ -f "gulpfile.js" ]
-    then
-        npm run build
-    fi
+    npm run build
 fi
 
 # Generate the HTML for the documentation

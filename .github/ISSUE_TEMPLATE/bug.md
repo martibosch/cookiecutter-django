@@ -1,4 +1,4 @@
-______________________________________________________________________
+---
 
 ## name: Bug Report about: Report a bug labels: bug
 
@@ -11,6 +11,7 @@ ______________________________________________________________________
 <!-- To assist you best, please include commands that you've run, options you've selected and any relevant logs -->
 
 - Host system configuration:
+
   - Version of cookiecutter CLI (get it with `cookiecutter --version`):
 
   - OS name and version:
@@ -45,12 +46,14 @@ ______________________________________________________________________
   - docker-compose version (if using Docker), run `docker-compose --version`:
 
   - ...
+
 - Options selected and/or [replay file](https://cookiecutter.readthedocs.io/en/latest/advanced/replay.html):
-  On Linux and MacOS: `cat ${HOME}/.cookiecutter_replay/cookiecutter-django.json`
+  On Linux and macOS: `cat ${HOME}/.cookiecutter_replay/cookiecutter-django.json`
   (Please, take care to remove sensitive information)
-  ```json
-  # Insert here the replay file content
-  ```
+
+```json
+
+```
 
 <summary>
 Logs:
