@@ -19,7 +19,6 @@ This setup is based on [cookiecutter-django](https://github.com/cookiecutter/coo
 
 ### Software
 
-<<<<<<< HEAD
 * [GNU Make](https://www.gnu.org/software/make/)
 * [terraform](https://www.terraform.io/)
 * [git](https://git-scm.com/) >=2.28.0
@@ -28,13 +27,6 @@ This setup is based on [cookiecutter-django](https://github.com/cookiecutter/coo
 Optional (recommended):
 
 * [GitHub CLI](https://cli.github.com/) (if you want to create the GitHub repository from the terminal).
-=======
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
-
-- To create a **superuser account**, use this command:
-
-      $ python manage.py createsuperuser
->>>>>>> upstream/master
 
 ### Accounts
 
@@ -65,7 +57,6 @@ The access tokens (generated or exising) must be set in the `terraform/deploy/me
 ```
 # terraform/deploy/meta/vars.tfvars
 
-<<<<<<< HEAD
 ...
 # tokens
 do_token             = "<token-contents>"  # DigitalOcean API token
@@ -77,36 +68,6 @@ tf_api_token         = "<token-contents>"  # Terraform Cloud API token
 
 ```
 # terraform/deploy/dotenv/vars.tfvars
-=======
-{%- if cookiecutter.use_celery == "y" %}
-
-### Celery
-
-This app comes with Celery.
-
-To run a celery worker:
-
-```bash
-cd {{cookiecutter.project_slug}}
-celery -A config.celery_app worker -l info
-```
-
-Please note: For Celery's import magic to work, it is important _where_ the celery commands are run. If you are in the same folder with _manage.py_, you should be right.
-
-To run [periodic tasks](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html), you'll need to start the celery beat scheduler service. You can start it as a standalone process:
-
-```bash
-cd {{cookiecutter.project_slug}}
-celery -A config.celery_app beat
-```
-
-or you can embed the beat service inside a worker with the `-B` option (not recommended for production use):
-
-```bash
-cd {{cookiecutter.project_slug}}
-celery -A config.celery_app worker -B -l info
-```
->>>>>>> upstream/master
 
 ...
 # tokens
@@ -195,14 +156,7 @@ Once the above commands are executed, a map of the `.env` files and their base64
 
 #### 2.4 Staging and production infrastructure
 
-<<<<<<< HEAD
 The inital provisioning of the staging and production infrastructure must also be done using GNU Make following the Terraform init-plan-apply scheme, i.e., for the staging environment:
-=======
-{%- endif %}
-{%- if cookiecutter.frontend_pipeline in ['Gulp', 'Webpack'] %}
-
-### Custom Bootstrap Compilation
->>>>>>> upstream/master
 
 ```bash
 make init-stage
@@ -210,7 +164,6 @@ make plan-stage
 make apply-stage
 ```
 
-<<<<<<< HEAD
 and for production:
 
 ```bash
@@ -268,10 +221,4 @@ make destroy-meta
 
 <a name="managing-workspaces-scale-factory">1</a>. ["Managing Workspaces With the TFE Provider at Scale Factory"](https://www.hashicorp.com/resources/managing-workspaces-with-the-tfe-provider-at-scale-factory)
 
-<a name="managing-workspaces-scale-factory">2</a>. [response by chrisarcand in "Using variables with remote backend"](https://discuss.hashicorp.com/t/using-variables-with-remote-backend/24531/2)
-=======
-You can find a list of available variables [in the bootstrap source](https://github.com/twbs/bootstrap/blob/v5.1.3/scss/_variables.scss), or get explanations on them in the [Bootstrap docs](https://getbootstrap.com/docs/5.1/customize/sass/).
-
-Bootstrap's javascript as well as its dependencies are concatenated into a single file: `static/js/vendors.js`.
-{%- endif %}
->>>>>>> upstream/master
+<a name="bootstraping-workspaces">2</a>. [response by chrisarcand in "Using variables with remote backend"](https://discuss.hashicorp.com/t/using-variables-with-remote-backend/24531/2)

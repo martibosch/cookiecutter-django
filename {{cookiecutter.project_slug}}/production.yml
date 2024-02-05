@@ -69,7 +69,7 @@ services:
       - ./.envs/.production/.traefik
 
   redis:
-    image: redis:6
+    image: docker.io/redis:6
   {%- if cookiecutter.use_celery == 'y' %}
 
   celeryworker:
